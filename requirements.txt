@@ -1,0 +1,46 @@
+# ============================================================
+# AI Auto-Dubbing Studio — залежності
+# ============================================================
+# Встановлення: pip install -r requirements.txt
+#
+# УВАГА: whisperx та GPT-SoVITS встановлюються окремо
+# (вони потребують специфічного torch+cuda оточення).
+# Інструкції: https://github.com/m-bain/whisperX
+#             https://github.com/RVC-Boss/GPT-SoVITS
+# ============================================================
+
+# --- TUI ---
+textual>=0.52.0
+
+# --- Аудіо обробка ---
+pydub>=0.25.1
+soundfile>=0.12.1
+numpy>=1.24.0
+pyrubberband>=0.3.0
+
+# --- HTTP (Ollama API) ---
+requests>=2.31.0
+
+# --- GPU / PyTorch (базова версія без CUDA; для GPU — встановлюй окремо) ---
+# torch>=2.1.0  # розкоментуй якщо немає whisperx що тягне torch сам
+
+# --- Тести ---
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+
+# ============================================================
+# Окрема установка (поза pip):
+#
+# WhisperX:
+#   pip install git+https://github.com/m-bain/whisperX.git
+#
+# F5-TTS:
+#   pip install git+https://github.com/SWivid/F5-TTS.git
+#
+# GPT-SoVITS: клонуй репо та запускай через subprocess
+#   https://github.com/RVC-Boss/GPT-SoVITS
+#
+# Rubber Band (для pyrubberband):
+#   Windows: winget install Rubber-Band  або  conda install -c conda-forge rubberband
+#   Linux:   apt install rubberband-cli
+# ============================================================
