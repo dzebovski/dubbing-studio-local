@@ -28,6 +28,7 @@ from config import (
     get_project_config,
 )
 from audio_extractor import AudioExtractor
+from audio_export import export_wav_to_mp3
 from transcriber import Transcriber
 from reference_collector import ReferenceCollector
 from translator import Translator
@@ -364,6 +365,17 @@ class Pipeline:
         self.state.current_step = PipelineStep.DONE
         self._save_state()
         self._log(f"Готово! Фінальний файл: {output_path}")
+
+        if getattr(self.config.mixer, "export_mp3", True):
+            try:
+                mp3_path = export_wav_to_mp3(
+                    output_path,
+                    mp3_path=output_path.with_suffix(".mp3"),
+                    bitrate=getattr(self.config.mixer, "mp3_bitrate", "192k"),
+                )
+                self._log(f"Стиснуто в MP3: {mp3_path}")
+            except Exception as e:
+                self._log(f"[yellow]MP3 не створено: {e}[/yellow]")
 
     # ------------------------------------------------------------------
     # Стан кроків

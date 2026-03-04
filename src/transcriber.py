@@ -165,8 +165,9 @@ class Transcriber:
         # 4. Діаризація — прив'язка speaker_id
         if self.config.hf_token:
             logger.info("Діаризація (speaker diarization)...")
-            diarize_model = whisperx.DiarizationPipeline(
-                use_auth_token=self.config.hf_token,
+            from whisperx.diarize import DiarizationPipeline
+            diarize_model = DiarizationPipeline(
+                token=self.config.hf_token,
                 device=device,
             )
             diarize_segments = diarize_model(

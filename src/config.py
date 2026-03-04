@@ -237,6 +237,9 @@ class MixerConfig:
     output_format: str = "wav"
     # Якщо між репліками є тиша — заповнюємо silence
     silence_fill: bool = True
+    # Додатково зберігати стиснуту копію в MP3 (через pydub/ffmpeg)
+    export_mp3: bool = True
+    mp3_bitrate: str = "192k"
 
 
 # ---------------------------------------------------------------------------
